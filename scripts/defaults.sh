@@ -75,4 +75,5 @@ setting_dock() {
   defaults write com.apple.dock launchanim -bool false
 }
 
+
 main
