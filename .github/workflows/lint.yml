@@ -3,16 +3,16 @@ name: Lint
 on:
   push:
     paths:
-    - 'scripts/**'
+    - 'src/**'
   pull_request:
     paths:
-    - 'scripts/**'
+    - 'src/**'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 defaults:
   run:
-    working-directory: ./scripts
+    working-directory: ./src
 
 jobs:
   lint:
