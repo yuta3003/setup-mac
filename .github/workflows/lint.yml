@@ -1,0 +1,38 @@
+name: Lint
+
+on:
+  push:
+    paths:
+      - 'scripts/**'
+  pull_request:
+    paths:
+      - 'scripts/**'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install ShellCheck
+        run: sudo apt install -y shellcheck
+      - name: Run ShellCheck defaults.sh
+        run: shellcheck defaults.sh
+        working-directory: ./scripts
+  # defaults-on-OSX-x64:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  #     - name: Install ShellCheck
+  #       run: |
+  #         brew update
+  #         brew install shellcheck
+
+  #     - name: Run ShellCheck install.sh
+  #       run: shellcheck install.sh
+  #       working-directory: ./etc/scripts
