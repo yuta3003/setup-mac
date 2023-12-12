@@ -22,17 +22,18 @@ jobs:
       - name: Run ShellCheck defaults.sh
         run: shellcheck defaults.sh
         working-directory: ./scripts
-  # defaults-on-OSX-x64:
-  #   runs-on: macos-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
 
-  #     - name: Install ShellCheck
-  #       run: |
-  #         brew update
-  #         brew install shellcheck
+  lint-on-OSX-x64:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-  #     - name: Run ShellCheck install.sh
-  #       run: shellcheck install.sh
-  #       working-directory: ./etc/scripts
+      - name: Install ShellCheck
+        run: |
+          brew update
+          brew install shellcheck
+
+      - name: Run ShellCheck install.sh
+        run: shellcheck install.sh
+        working-directory: ./etc/scripts
