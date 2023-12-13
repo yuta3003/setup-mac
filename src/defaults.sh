@@ -26,6 +26,13 @@ main() {
 
   # Display battery level in the menu bar
   defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+  if ask_yes_no "再起動しますか？"; then
+    echo 'Rebooting to reflect settings'
+    sudo shutdown -r now
+  else
+    echo "再起動をスキップしました。"
+  fi
 }
 
 setting_defaults() {
@@ -73,6 +80,24 @@ setting_threefinger_drag() {
 setting_dock() {
   # Disable animation at application launch
   defaults write com.apple.dock launchanim -bool false
+}
+
+ask_yes_no() {
+  while true; do
+    echo -n "$* [y/n]: "
+    read -r ANS
+    case $ANS in
+      [Yy]*)
+        return 0
+        ;;
+      [Nn]*)
+        return 1
+        ;;
+      *)
+        echo "yまたはnを入力してください"
+        ;;
+    esac
+  done
 }
 
 
